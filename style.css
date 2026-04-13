@@ -91,9 +91,6 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
     --gray-900: #111827;
 }
 
-/* ================================
-   Typography — Font Families
-   ================================ */
 
 .font-body {
     font-family: "Montserrat", system-ui, sans-serif;
@@ -172,6 +169,10 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
 
 .leading-normal {
     line-height: 1.6;
+}
+
+.leading-relaxed {
+    line-height: 1.75;
 }
 
 .tracking-wide {
@@ -288,6 +289,10 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
     border-color: rgba(27, 58, 46, 0.12);
 }
 
+.border-forest-5,.hover\:border-forest-5:hover {
+    border-color: rgba(27, 58, 46, 0.06);
+}
+
 .border-forest-40,.hover\:border-forest-40:hover {
     border-color: rgba(27, 58, 46, 0.4);
 }
@@ -365,6 +370,14 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
 .opacity-80,.hover\:opacity-80:hover  { opacity: 0.8; }
 .opacity-90,.hover\:opacity-90:hover  { opacity: 0.9; }
 
+.bg-opacity-8 {
+    background-color: rgba(46, 125, 91, 0.08) ;
+}
+
+.border-opacity-20 {
+    border-color: rgba(46, 125, 91, 0.2) ;
+}
+
 
 .flex-shrink-0 {
     flex-shrink: 0;
@@ -416,10 +429,6 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
     background-repeat: no-repeat;
 }
 
-/* ================================
-   Margin
-   ================================ */
-
 .m-auto {
     margin: 0 auto;
 }
@@ -467,6 +476,13 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
 .mb7 { margin-bottom: 28px; }
 .mb8 { margin-bottom: 32px; }
 .mb9 { margin-bottom: 36px; }
+.mb10 { margin-bottom: 40px; }
+.mb11 { margin-bottom: 44px; }
+.mb12 { margin-bottom: 48px; }
+.mb13 { margin-bottom: 52px; }
+.mb14 { margin-bottom: 56px; }
+.mb15 { margin-bottom: 60px; }
+.mb16 { margin-bottom: 64px; }
 
 .ml0 { margin-left: 0px; }
 .ml1 { margin-left: 4px; }
@@ -495,9 +511,6 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
 .my5 { margin-top: 20px; margin-bottom: 20px; }
 .my6 { margin-top: 24px; margin-bottom: 24px; }
 
-/* ================================
-   Padding
-   ================================ */
 
 .p0 { padding: 0px; }
 .p1 { padding: 4px; }
@@ -516,10 +529,13 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
 .pt3 { padding-top: 12px; }
 .pt4 { padding-top: 16px; }
 .pt5 { padding-top: 20px; }
+.pt5 { padding-top: 20px; }
 .pt6 { padding-top: 24px; }
 .pt7 { padding-top: 28px; }
 .pt8 { padding-top: 32px; }
 .pt9 { padding-top: 36px; }
+.pt10 { padding-top: 40px; }
+.pt12 { padding-top: 48px; }
 
 .pr0 { padding-right: 0px; }
 .pr1 { padding-right: 4px; }
@@ -577,10 +593,9 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
 .py9 { padding-top: 36px; padding-bottom: 36px; }
 .py12 { padding-top: 48px; padding-bottom: 48px; }
 .py16 { padding-top: 64px; padding-bottom: 64px; }
+.py20 { padding-top: 80px; padding-bottom: 80px; }
+.py24 { padding-top: 96px; padding-bottom: 96px; }
 
-/* ================================
-   Display
-   ================================ */
 
 .block {
     display: block;
@@ -609,10 +624,6 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
 .none {
     display: none;
 }
-
-/* ================================
-   Flexbox
-   ================================ */
 
 .flex-row {
     flex-direction: row;
@@ -672,9 +683,6 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
 .gap-7 { gap: 40px; }
 .gap-8 { gap: 50px; }
 
-/* ================================
-   Grid
-   ================================ */
 
 .grid-cols-1 {
     grid-template-columns: repeat(1, 1fr);
@@ -699,10 +707,6 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
 .grid-cols-ratio {
     grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
 }
-
-/* ================================
-   Width & Height
-   ================================ */
 
 .w-full { width: 100%; }
 .w-auto { width: auto; }
@@ -738,9 +742,6 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
 .min-h-200    { min-height: 200px; }
 .min-h-300    { min-height: 300px; }
 
-/* ================================
-   Container
-   ================================ */
 
 .container {
     width: 100%;
@@ -759,9 +760,6 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
     max-width: 672px;
 }
 
-/* ================================
-   Border
-   ================================ */
 
 .border {
     border: 1px solid;
@@ -794,10 +792,6 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
 .border-2 { border-width: 2px; }
 .border-3 { border-width: 3px; }
 
-/* ================================
-   Border Radius
-   ================================ */
-
 .rounded {
     border-radius: 4px;
 }
@@ -822,9 +816,6 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
     border-radius: 9999px;
 }
 
-/* ================================
-   Position
-   ================================ */
 
 .absolute { position: absolute; }
 .relative { position: relative; }
@@ -838,9 +829,6 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
 .right-0  { right: 0; }
 .top-full { top: 100%; }
 
-/* ================================
-   Overflow
-   ================================ */
 
 .overflow-auto    { overflow: auto; }
 .overflow-hidden  { overflow: hidden; }
@@ -849,9 +837,6 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
 .overflow-x-auto  { overflow-x: auto; }
 .overflow-y-auto  { overflow-y: auto; }
 
-/* ================================
-   Z-index
-   ================================ */
 
 .z0 { z-index: 0; }
 .z1 { z-index: 10; }
@@ -861,9 +846,6 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
 .z5 { z-index: 50; }
 .z-full { z-index: 999; }
 
-/* ================================
-   Shadow
-   ================================ */
 
 .shadow {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
@@ -885,34 +867,22 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
     box-shadow: 0 10px 24px rgba(0, 0, 0, 0.04);
 }
 
-/* ================================
-   Opacity
-   ================================ */
 
 .opacity-0,.hover\:opacity-0:hover   { opacity: 0; }
 .opacity-50,.hover\:opacity-50:hover { opacity: 0.5; }
 .opacity-100,.hover\:opacity-100:hover { opacity: 1; }
 
-/* ================================
-   Backdrop Blur
-   ================================ */
 
 .backdrop-blur-sm   { backdrop-filter: blur(14px); }
 .backdrop-blur-base { backdrop-filter: blur(16px); }
 .backdrop-blur-lg   { backdrop-filter: blur(18px); }
 .backdrop-blur-xl   { backdrop-filter: blur(24px); }
 
-/* ================================
-   Cursor
-   ================================ */
 
 .cursor-pointer     { cursor: pointer; }
 .cursor-default     { cursor: default; }
 .cursor-not-allowed { cursor: not-allowed; }
 
-/* ================================
-   Transition
-   ================================ */
 
 .transition {
     transition: all 0.3s ease;
@@ -921,10 +891,6 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
 .transition-default {
     transition: all 0.18s ease-out;
 }
-
-/* ================================
-   Misc Utilities
-   ================================ */
 
 .list-none {
     list-style: none;
@@ -939,10 +905,6 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
 .user-select-auto { user-select: auto; }
 .user-select-text { user-select: text; }
 
-/* ================================
-   Header
-   ================================ */
-
 header {
     position: sticky;
     top: 0;
@@ -950,10 +912,6 @@ header {
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
 }
-
-/* ================================
-   Navigation
-   ================================ */
 
 .nav-link {
     padding: 4px 14px;
@@ -964,10 +922,6 @@ header {
 .nav-link:hover {
     background-color: rgba(232, 245, 238, 0.9);
 }
-
-/* ================================
-   Product Card Elements
-   ================================ */
 
 .product-img {
     min-height: 144px;
@@ -1000,10 +954,6 @@ header {
     color: var(--forest);
 }
 
-/* ================================
-   Product Card — Detail Layout
-   ================================ */
-
 .product-card {
     transition: box-shadow 0.18s ease-out;
 }
@@ -1027,7 +977,7 @@ header {
 }
 
 .product-thumb:hover {
-    opacity: 1 !important;
+    opacity: 1 ;
     border-color: var(--gold);
 }
 
@@ -1107,10 +1057,6 @@ header {
     color: var(--forest);
 }
 
-/* ================================
-   Customization Card
-   ================================ */
-
 .customization-card {
     border-radius: 18px;
     padding: 24px;
@@ -1128,9 +1074,6 @@ header {
     box-shadow: 0 24px 45px rgba(0, 0, 0, 0.08);
 }
 
-/* ================================
-   Hover Transforms
-   ================================ */
 
 .hover\:-translate-y-1:hover {
     transform: translateY(-4px);
@@ -1140,9 +1083,6 @@ header {
     transform: translateY(-2px);
 }
 
-/* ================================
-   Responsive — md (≥768px)
-   ================================ */
 
 @media (min-width: 768px) {
 
@@ -1176,9 +1116,6 @@ header {
 
 }
 
-/* ================================
-   Responsive — lg (≥1024px)
-   ================================ */
 
 @media (min-width: 1024px) {
 
@@ -1200,9 +1137,6 @@ header {
 
 }
 
-/* ================================
-   Responsive — Mobile only (<768px)
-   ================================ */
 
 @media (max-width: 767px) {
 
@@ -1237,10 +1171,6 @@ header {
 }
 
 }
-
-/* ================================
-   Print
-   ================================ */
 
 @media print {
 
