@@ -1127,6 +1127,13 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
     color: var(--gold);
 }
 
+/* Active state for package buttons */
+button.active {
+    background-color: var(--emerald) !important;
+    color: var(--white) !important;
+    border-color: var(--emerald) !important;
+}
+
 /* ============================================
    CUSTOM COMPONENTS
    ============================================ */
