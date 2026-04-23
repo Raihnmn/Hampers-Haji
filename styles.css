@@ -48,9 +48,6 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
     outline: 2px solid var(--green-300);
 }
 
-/* ============================================
-   CSS VARIABLES
-   ============================================ */
 :root {
     --forest:   #1b3a2e;
     --emerald:  #2e7d5b;
@@ -93,9 +90,6 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
     --gray-900: #111827;
 }
 
-/* ============================================
-   TYPOGRAPHY - FONT FAMILIES
-   ============================================ */
 .font-body {
     font-family: "Montserrat", system-ui, sans-serif;
 }
@@ -104,9 +98,6 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
     font-family: "Playfair Display", "Times New Roman", serif;
 }
 
-/* ============================================
-   TYPOGRAPHY - FONT SIZES
-   ============================================ */
 .text-xxs {
     font-size: 10px;
 }
@@ -155,9 +146,6 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
     font-size: 62px;
 }
 
-/* ============================================
-   TYPOGRAPHY - FONT WEIGHT
-   ============================================ */
 .font-normal {
     font-weight: 400;
 }
@@ -182,9 +170,6 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
     font-weight: 700;
 }
 
-/* ============================================
-   TYPOGRAPHY - LINE HEIGHT & LETTER SPACING
-   ============================================ */
 .leading-tight {
     line-height: 1.2;
 }
@@ -209,9 +194,6 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
     text-transform: uppercase;
 }
 
-/* ============================================
-   TYPOGRAPHY - TEXT ALIGNMENT
-   ============================================ */
 .text-left {
     text-align: left;
 }
@@ -224,9 +206,6 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
     text-align: right;
 }
 
-/* ============================================
-   COLORS - TEXT
-   ============================================ */
 .text-forest,.hover\:text-forest:hover {
     color: var(--forest);
 }
@@ -283,9 +262,6 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
     color: var(--yellow-500);
 }
 
-/* ============================================
-   COLORS - BACKGROUND
-   ============================================ */
 .bg-forest,.hover\:bg-forest:hover {
     background-color: var(--forest);
 }
@@ -373,9 +349,6 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
     background-repeat: no-repeat;
 }
 
-/* ============================================
-   COLORS - BORDER
-   ============================================ */
 .border-forest,.hover\:border-forest:hover {
     border-color: var(--forest);
 }
@@ -448,9 +421,6 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
     border-color: rgba(46, 125, 91, 0.2);
 }
 
-/* ============================================
-   OPACITY
-   ============================================ */
 .opacity-0,.hover\:opacity-0:hover {
     opacity: 0;
 }
@@ -495,9 +465,6 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
     opacity: 1;
 }
 
-/* ============================================
-   SPACING - MARGIN
-   ============================================ */
 .m0 { margin: 0px; }
 .m1 { margin: 4px; }
 .m2 { margin: 8px; }
@@ -511,6 +478,11 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
 
 .m-auto {
     margin: 0 auto;
+}
+
+.mx-auto {
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .mt0 { margin-top: 0px; }
@@ -580,9 +552,6 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
 .my5 { margin-top: 20px; margin-bottom: 20px; }
 .my6 { margin-top: 24px; margin-bottom: 24px; }
 
-/* ============================================
-   SPACING - PADDING
-   ============================================ */
 .p0 { padding: 0px; }
 .p1 { padding: 4px; }
 .p2 { padding: 8px; }
@@ -664,9 +633,6 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
 .py20 { padding-top: 80px; padding-bottom: 80px; }
 .py24 { padding-top: 96px; padding-bottom: 96px; }
 
-/* ============================================
-   DISPLAY & LAYOUT
-   ============================================ */
 .block {
     display: block;
 }
@@ -751,9 +717,6 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
     justify-content: end;
 }
 
-/* ============================================
-   GAP
-   ============================================ */
 .gap-0 { gap: 0; }
 .gap-1 { gap: 5px; }
 .gap-2 { gap: 10px; }
@@ -764,9 +727,6 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
 .gap-7 { gap: 40px; }
 .gap-8 { gap: 50px; }
 
-/* ============================================
-   GRID COLUMNS
-   ============================================ */
 .grid-cols-1 {
     grid-template-columns: repeat(1, 1fr);
 }
@@ -791,9 +751,6 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
     grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
 }
 
-/* ============================================
-   SIZING - WIDTH
-   ============================================ */
 .w-full { width: 100%; }
 .w-auto { width: auto; }
 .w-1-2  { width: 50%; }
@@ -812,9 +769,6 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
 .w-56  { width: 56px; }
 .w-60  { width: 60px; }
 
-/* ============================================
-   SIZING - HEIGHT
-   ============================================ */
 .h-full   { height: 100%; }
 .h-auto   { height: auto; }
 .h-screen { height: 100vh; }
@@ -832,42 +786,22 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
 .h-64  { height: 256px; }
 .h-220 { height: 220px; }
 
-/* ============================================
-   SIZING - MAX WIDTH
-   ============================================ */
 .max-w-full   { max-width: 100%; }
 .max-w-400    { max-width: 400px; }
 .max-w-600    { max-width: 600px; }
 .max-w-800    { max-width: 800px; }
 .max-w-1000   { max-width: 1000px; }
+.max-w-1120   { max-width: 1120px; }
 .max-w-1-2    { max-width: 50%; }
 .max-w-2-3    { max-width: 66.66%; }
 .max-w-xl     { max-width: 576px; }
 .max-w-2xl    { max-width: 672px; }
 
-/* ============================================
-   SIZING - MIN HEIGHT
-   ============================================ */
 .min-h-screen { min-height: 100vh; }
 .min-h-144    { min-height: 144px; }
 .min-h-200    { min-height: 200px; }
 .min-h-300    { min-height: 300px; }
 
-/* ============================================
-   CONTAINER
-   ============================================ */
-.container {
-    width: 100%;
-    max-width: 1120px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 16px;
-    padding-right: 16px;
-}
-
-/* ============================================
-   BORDERS - STYLES & WIDTH
-   ============================================ */
 .border {
     border: 1px solid;
 }
@@ -918,9 +852,6 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
 .border-1-5-emerald { border: 1.5px solid var(--emerald); }
 .border-l-1-5-emerald { border-left: 1.5px solid var(--emerald); border-right: 1.5px solid var(--emerald); }
 
-/* ============================================
-   BORDER RADIUS
-   ============================================ */
 .rounded {
     border-radius: 4px;
 }
@@ -945,9 +876,6 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
     border-radius: 9999px;
 }
 
-/* ============================================
-   POSITION
-   ============================================ */
 .absolute { position: absolute; }
 .relative { position: relative; }
 .fixed    { position: fixed; }
@@ -971,9 +899,6 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
 .right-8  { right: 8px; }
 .right-14 { right: 14px; }
 
-/* ============================================
-   Z-INDEX
-   ============================================ */
 .z0 { z-index: 0; }
 .z1 { z-index: 10; }
 .z2 { z-index: 20; }
@@ -982,9 +907,6 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
 .z5 { z-index: 50; }
 .z-full { z-index: 999; }
 
-/* ============================================
-   OVERFLOW & VISIBILITY
-   ============================================ */
 .overflow-auto    { overflow: auto; }
 .overflow-hidden  { overflow: hidden; }
 .overflow-visible { overflow: visible; }
@@ -992,9 +914,6 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
 .overflow-x-auto  { overflow-x: auto; }
 .overflow-y-auto  { overflow-y: auto; }
 
-/* ============================================
-   SHADOWS & EFFECTS
-   ============================================ */
 .shadow {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
@@ -1027,9 +946,6 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
     box-shadow: 0 24px 48px rgba(0, 0, 0, 0.1);
 }
 
-/* ============================================
-   TRANSFORMS & HOVER EFFECTS
-   ============================================ */
 .hover\:-translate-y-1:hover {
     transform: translateY(-4px);
 }
@@ -1046,24 +962,15 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
     transform: scale(1.1);
 }
 
-/* ============================================
-   BACKDROP FILTER
-   ============================================ */
 .backdrop-blur-sm   { backdrop-filter: blur(14px); }
 .backdrop-blur-base { backdrop-filter: blur(16px); }
 .backdrop-blur-lg   { backdrop-filter: blur(18px); }
 .backdrop-blur-xl   { backdrop-filter: blur(24px); }
 
-/* ============================================
-   CURSOR
-   ============================================ */
 .cursor-pointer     { cursor: pointer; }
 .cursor-default     { cursor: default; }
 .cursor-not-allowed { cursor: not-allowed; }
 
-/* ============================================
-   TRANSITIONS & ANIMATIONS
-   ============================================ */
 .transition {
     transition: all 0.3s ease;
 }
@@ -1092,9 +999,6 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
     transition: all 0.2s ease-out;
 }
 
-/* ============================================
-   UTILITIES & CUSTOM
-   ============================================ */
 .list-none {
     list-style: none;
     padding-left: 0;
@@ -1134,9 +1038,6 @@ button.active {
     border-color: var(--emerald) !important;
 }
 
-/* ============================================
-   CUSTOM COMPONENTS
-   ============================================ */
 header {
     position: sticky;
     top: 0;
@@ -1155,9 +1056,6 @@ header {
     background-color: rgba(232, 245, 238, 0.9);
 }
 
-/* ============================================
-   RESPONSIVE - TABLET & UP
-   ============================================ */
 @media (min-width: 768px) {
 
 .md\:flex {
@@ -1190,9 +1088,6 @@ header {
 
 }
 
-/* ============================================
-   RESPONSIVE - DESKTOP & UP
-   ============================================ */
 @media (min-width: 1024px) {
 
 .lg\:flex-row {
@@ -1213,9 +1108,6 @@ header {
 
 }
 
-/* ============================================
-   RESPONSIVE - MOBILE & DOWN
-   ============================================ */
 @media (max-width: 767px) {
 
 .hidden {
@@ -1250,9 +1142,6 @@ header {
 
 }
 
-/* ============================================
-   PRINT
-   ============================================ */
 @media print {
 
 * {
