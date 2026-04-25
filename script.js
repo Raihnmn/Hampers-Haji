@@ -1,6 +1,3 @@
-// ============================================
-// PACKAGE SELECTION FUNCTIONALITY
-// ============================================
 document.addEventListener('click', function(e) {
   // Handle package button clicks
   const button = e.target;
