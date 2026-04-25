@@ -1,5 +1,4 @@
 document.addEventListener('click', function(e) {
-  // Handle package button clicks
   const button = e.target;
   
   if (button.tagName === 'BUTTON' && button.classList.contains('px-4') && button.classList.contains('py2')) {
