@@ -342,13 +342,6 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
     background: linear-gradient(135deg, var(--emerald), var(--forest));
 }
 
-.hero-bg {
-    background-image: url("gambar/boxputih.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
 .border-forest,.hover\:border-forest:hover {
     border-color: var(--forest);
 }
@@ -913,6 +906,10 @@ a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visib
 .overflow-scroll  { overflow: scroll; }
 .overflow-x-auto  { overflow-x: auto; }
 .overflow-y-auto  { overflow-y: auto; }
+
+.object-cover { object-fit: cover; }
+.object-contain { object-fit: contain; }
+.object-fill { object-fit: fill; }
 
 .shadow {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
