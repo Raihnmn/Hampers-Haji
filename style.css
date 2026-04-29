@@ -1,51 +1,67 @@
 ﻿/** Ariprw v1 **/
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
 
-* {
-    box-sizing: border-box;
-    font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-}
-
-*::before, *::after {
-    box-sizing: border-box;
-}
-
 html {
     scroll-behavior: smooth;
     word-break: break-word;
 }
 
-img {
+/* html, body {
+    margin: 0;
+    padding: 0;
+} */
+
+.hampers-haji {
+    box-sizing: border-box;
+    font-family: "Montserrat", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.hampers-haji *,
+.hampers-haji *::before,
+.hampers-haji *::after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+.hampers-haji img {
     width: 100%;
 }
 
-svg {
+.hampers-haji svg {
     max-width: 100%;
 }
 
-p {
+.hampers-haji p {
     margin-bottom: 0;
 }
 
-ul, ol {
+.hampers-haji ul,
+.hampers-haji ol {
     list-style: none;
     margin: 0;
     padding: 0;
 }
 
-a:link, a:visited, a:active {
+.hampers-haji a:link,
+.hampers-haji a:visited,
+.hampers-haji a:active {
     text-decoration: none;
 }
 
-a, input, textarea, button {
+.hampers-haji a,
+.hampers-haji input,
+.hampers-haji textarea,
+.hampers-haji button {
     outline: none;
 }
 
-a:focus-visible, input:focus-visible, textarea:focus-visible, button:focus-visible {
+.hampers-haji a:focus-visible,
+.hampers-haji input:focus-visible,
+.hampers-haji textarea:focus-visible,
+.hampers-haji button:focus-visible {
     outline: 2px solid var(--gray-300);
 }
 
