@@ -4,6 +4,7 @@
 html {
     scroll-behavior: smooth;
     word-break: break-word;
+    overscroll-behavior-y: none;
 }
 
 /* html, body {
