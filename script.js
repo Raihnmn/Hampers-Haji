@@ -1,14 +1,12 @@
 document.addEventListener('click', function(e) {
   const button = e.target;
  
-  // index.html pakai class px4 py2 (style.css, tanpa dash)
   if (button.tagName === 'BUTTON' && button.classList.contains('px4') && button.classList.contains('py2')) {
  
     const paketContainer = button.closest('.flex-row.flex-wrap.gap-2') || button.parentElement;
  
     if (!paketContainer) return;
  
-    // Reset semua tombol dalam grup
     paketContainer.querySelectorAll('button').forEach(btn => {
       btn.classList.remove('active');
       btn.style.backgroundColor = '';
@@ -16,7 +14,6 @@ document.addEventListener('click', function(e) {
       btn.style.borderColor = '';
     });
  
-    // Aktifkan tombol yang diklik
     button.classList.add('active');
     button.style.backgroundColor = 'var(--green-500)';
     button.style.color = 'var(--white)';
