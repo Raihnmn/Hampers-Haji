@@ -409,9 +409,6 @@
 
 		<script src="script.js"></script>
 		<script>
-			// =============================================
-			// TAB FOTO - Klik thumbnail ganti main image
-			// =============================================
 			const itemTabFoto = document.querySelectorAll('.itemTabFoto');
 
 			itemTabFoto.forEach(item => {
@@ -420,8 +417,6 @@
 
 				tablinks.forEach((itemTablinks, i) => {
 					itemTablinks.addEventListener('click', () => {
-
-						// Tampilkan tabcontent sesuai index, sembunyikan yang lain
 						tabcontent.forEach((content, ke) => {
 							if (i === ke) {
 								content.classList.remove('dnone');
@@ -429,11 +424,8 @@
 								content.classList.add('dnone');
 							}
 						});
-
-						// Update class active pada tablinks
 						tablinks.forEach(link => link.classList.remove('active'));
 						itemTablinks.classList.add('active');
-
 					});
 				});
 			});
