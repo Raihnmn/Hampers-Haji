@@ -371,15 +371,6 @@ html {
     font-family: "Playfair Display", "Times New Roman", serif;
 }
 
-/* =========================================================
-   TEXT & BACKGROUND UTILITIES (50 - 950)
-   ========================================================= */
-
-
-/* =========================================================
-   ABSOLUTE COLORS (White, Black, Transparent)
-   ========================================================= */
-
 /* --- WHITE --- */
 .text-white, .hover\:text-white:hover { color: var(--white); }
 .bg-white, .hover\:bg-white:hover { background-color: var(--white); }
