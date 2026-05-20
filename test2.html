@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="id">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Souveneria — Sacred Gifting Experience</title>
+		<link rel="stylesheet" href="style.css" />
+		<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Cinzel:wght@400;500;600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+		<style>
+			/* ===========================
+			   SOUVENERIA — LUXURY LAYER
+			   =========================== */
+
+			:root {
+				--gold: #C9A84C;
+				--gold-light: #E8CC7A;
+				--gold-pale: #F5E9C4;
+				--gold-dark: #9A7828;
+				--deep: #1A0A2E;
+				--deep-mid: #2D1458;
+				--cream: #FAF6EE;
+				--cream-warm: #F3ECD8;
+				--maroon: #5C1A3A;
+				--silk: rgba(201,168,76,0.12);
+				--silk-border: rgba(201,168,76,0.3);
+			}
+
+			/* Custom cursor */
+			* { cursor: none !important; }
+			#luxury-cursor {
+				width: 12px; height: 12px;
+				background: var(--gold);
+				border-radius: 50%;
+				position: fixed; top: 0; left: 0;
+				pointer-events: none; z-index: 99999;
+				transform: translate(-50%, -50%);
+				transition: transform 0.1s, width 0.25s, height 0.25s, background 0.25s;
+				mix-blend-mode: difference;
+			}
+			#luxury-cursor.hovering {
+				width: 36px; height: 36px;
+				background: rgba(201,168,76,0.4);
+				mix-blend-mode: normal;
+			}
+			#luxury-cursor-trail {
+				width: 32px; height: 32px;
+				border: 1px solid var(--gold);
+				border-radius: 50%;
+				position: fixed; top: 0; left: 0;
+				pointer-events: none; z-index: 99998;
+				transform: translate(-50%, -50%);
+				transition: transform 0.35s cubic-bezier(.18,.89,.32,1.28), opacity 0.35s;
+				opacity: 0.55;
+			}
+
+			/* Body */
+			html { scroll-behavior: smooth; }
+			body {
+				background: var(--deep) !important;
+				margin: 0; padding: 0;
+				font-family: 'Montserrat', sans-serif;
+				overflow-x: hidden;
+			}
+
+			/* ---- GRAIN OVERLAY ---- */
+			body::before {
+				content: '';
+				position: fixed; inset: 0; z-index: 0;
+				pointer-events: none;
+				background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+				background-size: 180px;
+				opacity: 0.5;
+			}
+
+			/* ---- GOLD LINE DIVIDERS ---- */
+			.lux-divider {
+				display: flex; align-items: center; gap: 12px;
+				margin: 6px 0 18px;
+			}
+			.lux-divider::before, .lux-divider::after {
+				content: ''; flex: 1; height: 1px;
+				background: linear-gradient(90deg, transparent, var(--gold), transparent);
+			}
+			.lux-divider span {
+				color: var(--gold);
+				font-size: 16px;
+				line-height: 1;
+			}
+
+			/* ---- FLOATING NAV ---- */
+			#lux-nav {
+				position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+				padding: 18px 48px;
+				display: flex; align-items: center; justify-content: space-between;
+				background: transparent;
+				transition: background 0.5s, padding 0.4s, backdrop-filter 0.5s;
+				backdrop-filter: blur(0px);
+			}
+			#lux-nav.scrolled {
+				background: rgba(26,10,46,0.92);
+				backdrop-filter: blur(16px);
+				padding: 12px 48px;
+				border-bottom: 1px solid var(--silk-border);
+			}
+			.nav-logo {
+				font-family: 'Cinzel', serif;
+				color: var(--gold);
+				font-size: 22px;
+				letter-spacing: 0.18em;
+				text-decoration: none;
+			}
+			.nav-links { display: flex; gap: 32px; }
+			.nav-links a {
+				font-family: 'Montserrat', sans-serif;
+				font-size: 11px; letter-spacing: 0.2em;
+				color: rgba(255,255,255,0.7);
+				text-decoration: none; text-transform: uppercase;
+				position: relative;
+				transition: color 0.3s;
+			}
+			.nav-links a::after {
+				content: ''; position: absolute; bottom: -3px; left: 0;
+				width: 0; height: 1px; background: var(--gold);
+				transition: width 0.35s cubic-bezier(.4,0,.2,1);
+			}
+			.nav-links a:hover { color: var(--gold); }
+			.nav-links a:hover::after { width: 100%; }
+
+			/* ---- HERO ---- */
+			#hero {
+				min-height: 100vh;
+				position: relative;
+				display: flex; align-items: center;
+				background: var(--deep);
+				overflow: hidden;
+			}
+			.hero-bg-gradient {
+				position: absolute; inset: 0;
+				background: radial-gradient(ellipse 80% 70% at 65% 50%, rgba(45,20,88,0.8) 0%, var(--deep) 70%);
+			}
+			/* Geometric Islamic ornament bg */
+			.hero-ornament {
+				position: absolute; right: -80px; top: 50%;
+				transform: translateY(-50%);
+				width: 580px; height: 580px;
+				opacity: 0.06;
+				pointer-events: none;
+			}
+			.hero-gold-line {
+				position: absolute; top: 0; left: 0; right: 0;
+				height: 3px;
+				background: linear-gradient(90deg, transparent 0%, var(--gold) 30%, var(--gold-light) 50%, var(--gold) 70%, transparent 100%);
+			}
+			.hero-content {
+				position: relative; z-index: 2;
+				max-width: 1200px; margin: 0 auto; padding: 120px 48px 80px;
+				width: 100%;
+			}
+			.hero-badge {
+				display: inline-flex; align-items: center; gap: 8px;
+				font-family: 'Montserrat', sans-serif;
+				font-size: 10px; letter-spacing: 0.3em;
+				color: var(--gold);
+				text-transform: uppercase;
+				border: 1px solid var(--silk-border);
+				padding: 8px 20px;
+				background: var(--silk);
+				margin-bottom: 32px;
+				animation: fadeSlideUp 0.8s 0.1s both;
+			}
+			.hero-badge::before {
+				content: '✦';
+				color: var(--gold);
+				font-size: 8px;
+			}
+			.hero-title {
+				font-family: 'Cormorant Garamond', serif;
+				font-size: clamp(48px, 7vw, 88px);
+				font-weight: 300;
+				color: var(--cream);
+				line-height: 1.1;
+				letter-spacing: -0.01em;
+				margin: 0 0 8px;
+				animation: fadeSlideUp 0.8s 0.2s both;
+			}
+			.hero-title em {
+				font-style: italic;
+				background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+			}
+			.hero-subtitle-line {
+				display: block;
+				font-family: 'Cinzel', serif;
+				font-size: clamp(14px, 2vw, 20px);
+				letter-spacing: 0.3em;
+				color: var(--gold);
+				margin-bottom: 32px;
+				font-weight: 400;
+				animation: fadeSlideUp 0.8s 0.3s both;
+			}
+			.hero-desc {
+				font-family: 'Montserrat', sans-serif;
+				font-size: 15px; line-height: 1.9;
+				color: rgba(250,246,238,0.65);
+				max-width: 500px;
+				margin-bottom: 48px;
+				font-weight: 300;
+				animation: fadeSlideUp 0.8s 0.4s both;
+			}
+			.hero-ctas {
+				display: flex; gap: 16px; flex-wrap: wrap;
+				animation: fadeSlideUp 0.8s 0.5s both;
+			}
+			.btn-gold {
+				display: inline-flex; align-items: center; gap: 10px;
+				padding: 16px 36px;
+				background: linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-light));
+				color: var(--deep);
+				font-family: 'Cinzel', serif;
+				font-size: 11px; letter-spacing: 0.2em;
+				text-decoration: none;
+				text-transform: uppercase;
+				font-weight: 600;
+				position: relative; overflow: hidden;
+				transition: transform 0.3s, box-shadow 0.3s;
+				box-shadow: 0 4px 24px rgba(201,168,76,0.25);
+			}
+			.btn-gold::after {
+				content: ''; position: absolute; inset: 0;
+				background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
+				opacity: 0; transition: opacity 0.3s;
+			}
+			.btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 36px rgba(201,168,76,0.4); }
+			.btn-gold:hover::after { opacity: 1; }
+			.btn-outline {
+				display: inline-flex; align-items: center; gap: 10px;
+				padding: 15px 35px;
+				border: 1px solid var(--silk-border);
+				color: var(--gold);
+				font-family: 'Cinzel', serif;
+				font-size: 11px; letter-spacing: 0.2em;
+				text-decoration: none;
+				text-transform: uppercase;
+				background: var(--silk);
+				transition: border-color 0.3s, background 0.3s, transform 0.3s;
+			}
+			.btn-outline:hover {
+				border-color: var(--gold);
+				background: rgba(201,168,76,0.15);
+				transform: translateY(-2px);
+			}
+			/* Scroll indicator */
+			.hero-scroll {
+				position: absolute; bottom: 40px; left: 50%;
+				transform: translateX(-50%);
+				display: flex; flex-direction: column; align-items: center; gap: 8px;
+				animation: fadeSlideUp 1s 1s both;
+			}
+			.hero-scroll span {
+				font-size: 9px; letter-spacing: 0.25em;
+				color: rgba(201,168,76,0.6);
+				text-transform: uppercase;
+			}
+			.scroll-line {
+				width: 1px; height: 48px;
+				background: linear-gradient(to bottom, var(--gold), transparent);
+				animation: scrollPulse 2s ease-in-out infinite;
+			}
+
+			/* ---- SECTION WRAPPER ---- */
+			.lux-section {
+				position: relative;
+				padding: 96px 0;
+			}
+			.lux-section-dark { background: var(--deep); }
+			.lux-section-mid {
+				background: linear-gradient(180deg, var(--deep-mid) 0%, var(--deep) 100%);
+			}
+			.lux-section-cream {
+				background: var(--cream);
+			}
+			.lux-container {
+				max-width: 1200px; margin: 0 auto; padding: 0 48px;
+			}
+			.lux-section-header {
+				text-align: center; margin-bottom: 64px;
+			}
+			.lux-eyebrow {
+				display: inline-block;
+				font-family: 'Montserrat', sans-serif;
+				font-size: 10px; letter-spacing: 0.35em;
+				color: var(--gold);
+				text-transform: uppercase;
+				margin-bottom: 12px;
+			}
+			.lux-heading {
+				font-family: 'Cormorant Garamond', serif;
+				font-size: clamp(32px, 4vw, 52px);
+				font-weight: 300;
+				color: var(--cream);
+				line-height: 1.2;
+				margin: 0 0 20px;
+			}
+			.lux-heading.dark { color: var(--deep); }
+			.lux-heading em {
+				font-style: italic;
+				background: linear-gradient(135deg, var(--gold-light), var(--gold));
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+			}
+			.lux-para {
+				font-size: 14px; line-height: 1.9;
+				color: rgba(250,246,238,0.6);
+				font-weight: 300;
+				max-width: 560px; margin: 0 auto;
+			}
+			.lux-para.dark { color: rgba(26,10,46,0.65); }
+
+			/* ---- PRODUCT CARDS ---- */
+			.products-grid { display: flex; flex-direction: column; gap: 2px; }
+			.product-card {
+				background: var(--cream-warm);
+				position: relative;
+				overflow: hidden;
+				border: 1px solid var(--silk-border);
+				transition: transform 0.4s cubic-bezier(.4,0,.2,1), box-shadow 0.4s;
+			}
+			.product-card::before {
+				content: ''; position: absolute; top: 0; left: 0; right: 0;
+				height: 2px;
+				background: linear-gradient(90deg, transparent, var(--gold), transparent);
+				transform: scaleX(0);
+				transition: transform 0.5s;
+			}
+			.product-card:hover { box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+			.product-card:hover::before { transform: scaleX(1); }
+			.product-inner { display: grid; grid-template-columns: 1fr 1fr; }
+			.product-photo-side {
+				padding: 40px;
+				background: var(--cream);
+				border-right: 1px solid rgba(201,168,76,0.15);
+				display: flex; flex-direction: column; gap: 16px;
+			}
+			.photo-main {
+				aspect-ratio: 1/1;
+				background: linear-gradient(135deg, #e8d5c4 0%, #d4b896 100%);
+				border-radius: 2px;
+				display: flex; align-items: center; justify-content: center;
+				overflow: hidden;
+				position: relative;
+			}
+			.photo-main-placeholder {
+				font-family: 'Cinzel', serif;
+				font-size: 11px; letter-spacing: 0.2em;
+				color: rgba(92,26,58,0.5);
+				text-transform: uppercase;
+			}
+			.photo-main img { width: 100%; height: 100%; object-fit: cover; }
+			.photo-thumbs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+			.photo-thumb {
+				aspect-ratio: 1/1;
+				background: linear-gradient(135deg, #e0c8b4, #c9a47a);
+				border-radius: 1px;
+				border: 1px solid transparent;
+				display: flex; align-items: center; justify-content: center;
+				cursor: pointer;
+				overflow: hidden;
+				transition: border-color 0.25s;
+			}
+			.photo-thumb.active { border-color: var(--gold); }
+			.photo-thumb span {
+				font-family: 'Cinzel', serif;
+				font-size: 10px; color: rgba(92,26,58,0.6);
+			}
+			.product-info-side {
+				padding: 48px 40px;
+				display: flex; flex-direction: column; justify-content: space-between; gap: 24px;
+			}
+			.product-badge-row { display: flex; align-items: center; gap: 12px; }
+			.product-badge {
+				font-family: 'Montserrat', sans-serif;
+				font-size: 9px; letter-spacing: 0.25em;
+				text-transform: uppercase;
+				color: var(--gold-dark);
+				border: 1px solid rgba(154,120,40,0.35);
+				padding: 5px 14px;
+				background: rgba(201,168,76,0.08);
+			}
+			.product-edition {
+				font-family: 'Montserrat', sans-serif;
+				font-size: 10px; letter-spacing: 0.15em;
+				color: rgba(26,10,46,0.45);
+				font-style: italic;
+			}
+			.product-title {
+				font-family: 'Cormorant Garamond', serif;
+				font-size: clamp(22px, 3vw, 34px);
+				font-weight: 400;
+				color: var(--deep);
+				line-height: 1.2;
+				margin: 0;
+			}
+			.product-rating {
+				display: flex; align-items: center; gap: 8px;
+				font-size: 13px; color: rgba(26,10,46,0.5);
+			}
+			.rating-stars { color: var(--gold); letter-spacing: 1px; }
+			.rating-score { font-weight: 600; color: var(--deep); }
+			.product-items { list-style: none; margin: 0; padding: 0; }
+			.product-items li {
+				font-size: 13px; line-height: 1.7;
+				color: rgba(26,10,46,0.65);
+				padding: 6px 0;
+				border-bottom: 1px solid rgba(201,168,76,0.12);
+				display: flex; align-items: center; gap: 10px;
+				font-weight: 300;
+			}
+			.product-items li:last-child { border-bottom: none; }
+			.product-items li::before {
+				content: '✦';
+				color: var(--gold);
+				font-size: 7px;
+				flex-shrink: 0;
+			}
+
+			/* ---- TESTIMONI ---- */
+			.testimoni-slide {
+				background: linear-gradient(135deg, rgba(45,20,88,0.8), rgba(26,10,46,0.9)) !important;
+				border: 1px solid var(--silk-border) !important;
+				border-radius: 2px !important;
+				padding: 36px !important;
+				backdrop-filter: blur(8px);
+			}
+			.testimoni-slide:hover {
+				border-color: var(--gold) !important;
+				transform: translateY(-4px);
+				transition: transform 0.3s, border-color 0.3s;
+			}
+			.testimoni-avatar {
+				width: 48px; height: 48px;
+				border-radius: 50%;
+				background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+				display: flex; align-items: center; justify-content: center;
+				font-family: 'Cinzel', serif;
+				font-size: 16px; color: var(--deep);
+				font-weight: 600;
+				flex-shrink: 0;
+			}
+			.testi-name {
+				font-family: 'Cormorant Garamond', serif;
+				font-size: 18px; color: var(--cream) !important;
+				font-weight: 400;
+			}
+			.testi-location {
+				font-size: 10px; letter-spacing: 0.15em;
+				color: rgba(201,168,76,0.7) !important;
+				text-transform: uppercase;
+			}
+			.testi-stars { color: var(--gold); font-size: 12px; letter-spacing: 2px; }
+			.testi-text {
+				font-size: 13px; line-height: 1.9;
+				color: rgba(250,246,238,0.7) !important;
+				font-weight: 300;
+				font-style: italic;
+			}
+			.testi-quote-mark {
+				font-family: 'Cormorant Garamond', serif;
+				font-size: 80px; line-height: 0;
+				color: rgba(201,168,76,0.15);
+				vertical-align: -0.4em;
+				margin-right: 4px;
+			}
+
+			/* ---- KUSTOMISASI ---- */
+			.kustom-card {
+				background: linear-gradient(135deg, rgba(45,20,88,0.6), rgba(26,10,46,0.8));
+				border: 1px solid var(--silk-border);
+				padding: 40px 32px;
+				position: relative; overflow: hidden;
+				transition: border-color 0.35s, transform 0.35s;
+			}
+			.kustom-card::before {
+				content: ''; position: absolute; bottom: 0; right: 0;
+				width: 100px; height: 100px;
+				background: radial-gradient(circle, rgba(201,168,76,0.1), transparent 70%);
+				pointer-events: none;
+			}
+			.kustom-card:hover { border-color: var(--gold); transform: translateY(-6px); }
+			.kustom-icon {
+				width: 52px; height: 52px;
+				border: 1px solid var(--silk-border);
+				display: flex; align-items: center; justify-content: center;
+				margin-bottom: 20px;
+			}
+			.kustom-icon svg path { fill: var(--gold) !important; }
+			.kustom-title {
+				font-family: 'Cormorant Garamond', serif;
+				font-size: 22px; font-weight: 400;
+				color: var(--cream);
+				margin-bottom: 12px;
+			}
+			.kustom-desc {
+				font-size: 13px; line-height: 1.8;
+				color: rgba(250,246,238,0.55);
+				font-weight: 300; margin-bottom: 16px;
+			}
+			.kustom-list { list-style: none; margin: 0; padding: 0; }
+			.kustom-list li {
+				font-size: 12px; color: rgba(201,168,76,0.8);
+				padding: 4px 0;
+				display: flex; gap: 8px; align-items: center;
+				letter-spacing: 0.05em;
+			}
+			.kustom-list li::before { content: '—'; color: var(--gold); }
+
+			/* ---- KOMITMEN ---- */
+			.komitmen-card {
+				background: #fff;
+				border: 1px solid rgba(201,168,76,0.2);
+				padding: 40px 28px;
+				display: flex; flex-direction: column; align-items: center;
+				text-align: center; gap: 16px;
+				position: relative; overflow: hidden;
+				transition: transform 0.35s, box-shadow 0.35s;
+			}
+			.komitmen-card::after {
+				content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+				height: 2px;
+				background: linear-gradient(90deg, transparent, var(--gold), transparent);
+				transform: scaleX(0);
+				transition: transform 0.4s;
+			}
+			.komitmen-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(201,168,76,0.15); }
+			.komitmen-card:hover::after { transform: scaleX(1); }
+			.komitmen-icon {
+				width: 56px; height: 56px;
+				background: linear-gradient(135deg, var(--gold-pale), rgba(201,168,76,0.2));
+				border: 1px solid rgba(201,168,76,0.3);
+				display: flex; align-items: center; justify-content: center;
+			}
+			.komitmen-title {
+				font-family: 'Cormorant Garamond', serif;
+				font-size: 20px; font-weight: 500;
+				color: var(--deep);
+			}
+			.komitmen-desc {
+				font-size: 13px; line-height: 1.8;
+				color: rgba(26,10,46,0.6); font-weight: 300;
+			}
+
+			/* ---- CTA SECTION ---- */
+			.lux-cta-section {
+				background: linear-gradient(135deg, var(--deep-mid), var(--deep));
+				padding: 80px 48px;
+				text-align: center;
+				position: relative; overflow: hidden;
+			}
+			.lux-cta-section::before {
+				content: ''; position: absolute; top: -1px; left: 0; right: 0;
+				height: 2px;
+				background: linear-gradient(90deg, transparent 0%, var(--gold) 50%, transparent 100%);
+			}
+
+			/* ---- ANIMATIONS ---- */
+			@keyframes fadeSlideUp {
+				from { opacity: 0; transform: translateY(30px); }
+				to { opacity: 1; transform: translateY(0); }
+			}
+			@keyframes scrollPulse {
+				0%, 100% { opacity: 0.4; transform: scaleY(1); }
+				50% { opacity: 1; transform: scaleY(1.15); }
+			}
+			@keyframes shimmer {
+				0% { background-position: -200% center; }
+				100% { background-position: 200% center; }
+			}
+			.reveal {
+				opacity: 0; transform: translateY(28px);
+				transition: opacity 0.7s cubic-bezier(.4,0,.2,1), transform 0.7s cubic-bezier(.4,0,.2,1);
+			}
+			.reveal.visible { opacity: 1; transform: translateY(0); }
+
+			/* ---- GOLD TEXT ---- */
+			.text-gold {
+				background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+			}
+
+			/* ---- RESPONSIVE ---- */
+			@media (max-width: 768px) {
+				#lux-nav { padding: 14px 20px; }
+				.nav-links { display: none; }
+				.hero-content { padding: 100px 20px 60px; }
+				.lux-container { padding: 0 20px; }
+				.lux-section { padding: 64px 0; }
+				.product-inner { grid-template-columns: 1fr; }
+				.product-photo-side { border-right: none; border-bottom: 1px solid rgba(201,168,76,0.15); }
+				.lux-cta-section { padding: 60px 20px; }
+				.hero-ctas { flex-direction: column; align-items: flex-start; }
+			}
+		</style>
+	</head>
+	<body>
+
+		<!-- Custom Cursor -->
+		<div id="luxury-cursor"></div>
+		<div id="luxury-cursor-trail"></div>
+
+		<!-- Floating Nav -->
+		<nav id="lux-nav">
+			<a href="#" class="nav-logo">SOUVENERIA</a>
+			<div class="nav-links">
+				<a href="#produk">Koleksi</a>
+				<a href="#testimoni">Testimoni</a>
+				<a href="#kustomisasi">Personalisasi</a>
+				<a href="#komitmen">Komitmen</a>
+			</div>
+		</nav>
+
+		<main class="hampers-haji" style="background:transparent;">
+
+			<!-- ==================== HERO ==================== -->
+			<section id="hero">
+				<div class="hero-gold-line"></div>
+				<div class="hero-bg-gradient"></div>
+
+				<!-- Geometric ornament SVG -->
+				<svg class="hero-ornament" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<circle cx="200" cy="200" r="190" stroke="#C9A84C" stroke-width="0.5"/>
+					<circle cx="200" cy="200" r="150" stroke="#C9A84C" stroke-width="0.5"/>
+					<circle cx="200" cy="200" r="110" stroke="#C9A84C" stroke-width="0.5"/>
+					<line x1="10" y1="200" x2="390" y2="200" stroke="#C9A84C" stroke-width="0.5"/>
+					<line x1="200" y1="10" x2="200" y2="390" stroke="#C9A84C" stroke-width="0.5"/>
+					<line x1="55" y1="55" x2="345" y2="345" stroke="#C9A84C" stroke-width="0.5"/>
+					<line x1="345" y1="55" x2="55" y2="345" stroke="#C9A84C" stroke-width="0.5"/>
+					<polygon points="200,10 390,200 200,390 10,200" stroke="#C9A84C" stroke-width="0.5" fill="none"/>
+					<polygon points="200,50 350,200 200,350 50,200" stroke="#C9A84C" stroke-width="0.3" fill="none"/>
+					<polygon points="200,80 320,200 200,320 80,200" stroke="#C9A84C" stroke-width="0.3" fill="none"/>
+					<circle cx="200" cy="200" r="8" fill="#C9A84C" fill-opacity="0.3"/>
+				</svg>
+
+				<div class="hero-content">
+					<p class="hero-badge">Madinah Emerald Collection &nbsp;·&nbsp; 1447 H</p>
+
+					<div class="lux-divider" style="margin:0 0 20px;max-width:300px;"><span>✦</span></div>
+
+					<h1 class="hero-title">
+						From the <em>Holy Land</em><br>
+						to Your Hands
+					</h1>
+
+					<span class="hero-subtitle-line">Sacred Gifting Experience</span>
+
+					<p class="hero-desc">
+						Perjalanan suci selalu membawa cerita spiritual, rasa syukur, dan kebahagiaan mendalam yang ingin dibagikan kepada mereka yang terkasih.
+						Souveneria menghadirkan setiap pemberian lebih dari sekadar hadiah — melainkan bentuk penghormatan yang elegan, personal, dan penuh marwah.
+					</p>
+
+					<div class="hero-ctas">
+						<a href="#produk" class="btn-gold">
+							<span>✦</span> Jelajahi Katalog
+						</a>
+						<a href="#kustomisasi" class="btn-outline">
+							Personalisasi Hampers →
+						</a>
+					</div>
+				</div>
+
+				<div class="hero-scroll">
+					<span>Scroll</span>
+					<div class="scroll-line"></div>
+				</div>
+			</section>
+
+			<!-- ==================== PRODUK ==================== -->
+			<section id="produk" class="lux-section lux-section-dark">
+				<div class="lux-container">
+					<div class="lux-section-header reveal">
+						<span class="lux-eyebrow">Koleksi Hampers</span>
+						<div class="lux-divider"><span>✦</span></div>
+						<h2 class="lux-heading">Signature Collection<br><em>by Souveneria</em></h2>
+						<p class="lux-para">
+							Lebih dari sekadar hadiah, setiap pemberian adalah cara menghadirkan rasa syukur, perhatian, dan penghormatan dalam bentuk yang lebih bermakna.
+							Biarkan Souveneria merangkainya dalam presentasi yang elegan dan istimewa.
+						</p>
+					</div>
+
+					<div class="products-grid">
+
+						<!-- Card 1 -->
+						<article class="product-card reveal">
+							<div class="product-inner">
+								<div class="product-photo-side">
+									<div class="itemTabFoto" style="display:flex;flex-direction:column;gap:16px;">
+										<div class="photo-main tabcontent">
+											<span class="photo-main-placeholder">Foto Produk</span>
+										</div>
+										<div class="photo-thumbs">
+											<div class="photo-thumb tablinks active"><span>I</span></div>
+											<div class="photo-thumb tablinks"><span>II</span></div>
+											<div class="photo-thumb tablinks"><span>III</span></div>
+											<div class="photo-thumb tablinks"><span>IV</span></div>
+										</div>
+									</div>
+								</div>
+								<div class="product-info-side">
+									<div>
+										<div class="product-badge-row">
+											<span class="product-badge">Signature</span>
+											<span class="product-edition">Edisi 1447 H</span>
+										</div>
+										<h3 class="product-title" style="margin-top:16px;">Hampers <em style="font-style:italic;color:var(--gold-dark);">"Maqam Exclusive"</em></h3>
+										<div class="product-rating" style="margin-top:10px;">
+											<span class="rating-stars">★★★★★</span>
+											<span class="rating-score">4.9</span>
+											<span>· 128 Ulasan</span>
+										</div>
+										<div style="margin-top:20px;">
+											<div class="lux-divider" style="max-width:200px;margin:0 0 16px;"><span>✦</span></div>
+											<ul class="product-items">
+												<li>Kurma Ajwa premium 500gr</li>
+												<li>Sajadah tebal bermotif geometris Madinah</li>
+												<li>Tasbih kayu sonokeling</li>
+												<li>Kemasan box hardcover forest satin</li>
+											</ul>
+										</div>
+									</div>
+									<div>
+										<a href="#" class="btn-gold" style="width:100%;justify-content:center;font-size:10px;">
+											Pesan Sekarang
+										</a>
+									</div>
+								</div>
+							</div>
+						</article>
+
+						<!-- Card 2 -->
+						<article class="product-card reveal">
+							<div class="product-inner">
+								<div class="product-photo-side">
+									<div class="itemTabFoto" style="display:flex;flex-direction:column;gap:16px;">
+										<div class="photo-main tabcontent">
+											<span class="photo-main-placeholder">Foto Produk</span>
+										</div>
+										<div class="photo-thumbs">
+											<div class="photo-thumb tablinks active"><span>I</span></div>
+											<div class="photo-thumb tablinks"><span>II</span></div>
+											<div class="photo-thumb tablinks"><span>III</span></div>
+											<div class="photo-thumb tablinks"><span>IV</span></div>
+										</div>
+									</div>
+								</div>
+								<div class="product-info-side">
+									<div>
+										<div class="product-badge-row">
+											<span class="product-badge">Corporate</span>
+											<span class="product-edition">Edisi 1447 H</span>
+										</div>
+										<h3 class="product-title" style="margin-top:16px;">Hampers <em style="font-style:italic;color:var(--gold-dark);">"Zamzam Serenity"</em></h3>
+										<div class="product-rating" style="margin-top:10px;">
+											<span class="rating-stars">★★★★★</span>
+											<span class="rating-score">4.8</span>
+											<span>· 94 Ulasan</span>
+										</div>
+										<div style="margin-top:20px;">
+											<div class="lux-divider" style="max-width:200px;margin:0 0 16px;"><span>✦</span></div>
+											<ul class="product-items">
+												<li>Snack premium halal pilihan</li>
+												<li>Set perlengkapan ibadah lengkap</li>
+												<li>Logo perusahaan dicetak di kartu box</li>
+											</ul>
+										</div>
+									</div>
+									<div>
+										<a href="#" class="btn-gold" style="width:100%;justify-content:center;font-size:10px;">
+											Pesan Sekarang
+										</a>
+									</div>
+								</div>
+							</div>
+						</article>
+
+						<!-- Card 3 -->
+						<article class="product-card reveal">
+							<div class="product-inner">
+								<div class="product-photo-side">
+									<div class="itemTabFoto" style="display:flex;flex-direction:column;gap:16px;">
+										<div class="photo-main tabcontent">
+											<span class="photo-main-placeholder">Foto Produk</span>
+										</div>
+										<div class="photo-thumbs">
+											<div class="photo-thumb tablinks active"><span>I</span></div>
+											<div class="photo-thumb tablinks"><span>II</span></div>
+											<div class="photo-thumb tablinks"><span>III</span></div>
+											<div class="photo-thumb tablinks"><span>IV</span></div>
+										</div>
+									</div>
+								</div>
+								<div class="product-info-side">
+									<div>
+										<div class="product-badge-row">
+											<span class="product-badge">Family Set</span>
+											<span class="product-edition">Edisi 1447 H</span>
+										</div>
+										<h3 class="product-title" style="margin-top:16px;">Hampers <em style="font-style:italic;color:var(--gold-dark);">"Hijrah Harmony"</em></h3>
+										<div class="product-rating" style="margin-top:10px;">
+											<span class="rating-stars">★★★★★</span>
+											<span class="rating-score">4.8</span>
+											<span>· 94 Ulasan</span>
+										</div>
+										<div style="margin-top:20px;">
+											<div class="lux-divider" style="max-width:200px;margin:0 0 16px;"><span>✦</span></div>
+											<ul class="product-items">
+												<li>Kurma premium asal Arab</li>
+												<li>Set perlengkapan ibadah lengkap</li>
+												<li>Buku cerita Hijrah</li>
+											</ul>
+										</div>
+									</div>
+									<div>
+										<a href="#" class="btn-gold" style="width:100%;justify-content:center;font-size:10px;">
+											Pesan Sekarang
+										</a>
+									</div>
+								</div>
+							</div>
+						</article>
+
+					</div>
+				</div>
+			</section>
+
+			<!-- ==================== TESTIMONI ==================== -->
+			<section id="testimoni" class="lux-section lux-section-mid">
+				<div class="lux-container">
+					<div class="lux-section-header reveal">
+						<span class="lux-eyebrow">Testimoni</span>
+						<div class="lux-divider"><span>✦</span></div>
+						<h2 class="lux-heading">Menghadirkan Senyum<br>di Setiap <em>Bingkisan</em></h2>
+						<p class="lux-para">
+							Kebahagiaan sejati hadir saat niat tulus tersampaikan dengan indah. Lihat bagaimana Souveneria membantu mewujudkan senyum bahagia keluarga dan kerabat tercinta.
+						</p>
+					</div>
+
+					<div class="testimoni-slider-outer" style="position:relative;overflow:hidden;">
+						<div class="testimoni-track" id="testimoniTrack" style="display:flex;transition:transform 0.6s cubic-bezier(.77,0,.18,1);will-change:transform;">
+
+							<div class="testimoni-slide" style="flex:0 0 calc(33.333% - 16px);margin-right:24px;">
+								<div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
+									<div class="testimoni-avatar">D</div>
+									<div>
+										<p class="testi-name">Dewi Handayani</p>
+										<p class="testi-location">Jakarta · Haji 1447 H</p>
+									</div>
+								</div>
+								<div class="testi-stars" style="margin-bottom:14px;">★★★★★</div>
+								<p class="testi-text"><span class="testi-quote-mark">"</span>Layanan yang diberikan sangat responsif dan profesional dari awal hingga akhir. Kurasi hampers-nya begitu selaras dengan ekspektasi keluarga besar, menghadirkan rasa bangga tersendiri saat membagikannya.</p>
+							</div>
+
+							<div class="testimoni-slide" style="flex:0 0 calc(33.333% - 16px);margin-right:24px;">
+								<div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
+									<div class="testimoni-avatar">N</div>
+									<div>
+										<p class="testi-name">Nabila Nurhaliza</p>
+										<p class="testi-location">Bandung · Haji 1447 H</p>
+									</div>
+								</div>
+								<div class="testi-stars" style="margin-bottom:14px;">★★★★★</div>
+								<p class="testi-text"><span class="testi-quote-mark">"</span>Saya sangat mengapresiasi tingkat ketelitian pada setiap detailnya. Proses personalisasi yang awalnya saya pikir rumit ternyata berjalan dengan sangat mulus dan praktis.</p>
+							</div>
+
+							<div class="testimoni-slide" style="flex:0 0 calc(33.333% - 16px);margin-right:24px;">
+								<div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
+									<div class="testimoni-avatar">A</div>
+									<div>
+										<p class="testi-name">Agustina Pratiwi</p>
+										<p class="testi-location">Semarang · Umroh 1447 H</p>
+									</div>
+								</div>
+								<div class="testi-stars" style="margin-bottom:14px;">★★★★★</div>
+								<p class="testi-text"><span class="testi-quote-mark">"</span>Sentuhan akhir kemasannya begitu memukau dan rapi. Lebih dari sekadar bingkisan, ini adalah bentuk apresiasi yang sangat istimewa dan mendapat pujian dari kolega saya.</p>
+							</div>
+
+							<div class="testimoni-slide" style="flex:0 0 calc(33.333% - 16px);margin-right:24px;">
+								<div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
+									<div class="testimoni-avatar">H</div>
+									<div>
+										<p class="testi-name">Harrun Ramadhan</p>
+										<p class="testi-location">Yogyakarta · Haji 1447 H</p>
+									</div>
+								</div>
+								<div class="testi-stars" style="margin-bottom:14px;">★★★★★</div>
+								<p class="testi-text"><span class="testi-quote-mark">"</span>Alhamdulillah, pengalaman pertama memesan hampers custom ini terasa sangat berkesan. Pendampingan yang diberikan sangat profesional sejak pemilihan kurasi hingga detail desain.</p>
+							</div>
+
+							<div class="testimoni-slide" style="flex:0 0 calc(33.333% - 16px);margin-right:24px;">
+								<div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
+									<div class="testimoni-avatar">N</div>
+									<div>
+										<p class="testi-name">Nurul Maryam</p>
+										<p class="testi-location">Makassar · Umroh 1447 H</p>
+									</div>
+								</div>
+								<div class="testi-stars" style="margin-bottom:14px;">★★★★★</div>
+								<p class="testi-text"><span class="testi-quote-mark">"</span>Souveneria adalah pilihan sempurna untuk mewujudkan niat berbagi syukur sepulang dari Tanah Suci. Hasil akhirnya sungguh menawan dan meninggalkan kesan mendalam bagi keluarga kami.</p>
+							</div>
+
+						</div>
+					</div>
+
+					<div id="testimoniDots" style="display:flex;justify-content:center;gap:10px;margin-top:32px;"></div>
+
+					<div style="text-align:center;margin-top:48px;" class="reveal">
+						<a href="#kontak" class="btn-gold">✦ &nbsp;Pesan Hampers Anda Sekarang</a>
+					</div>
+				</div>
+			</section>
+
+			<!-- ==================== KUSTOMISASI ==================== -->
+			<section id="kustomisasi" class="lux-section lux-section-dark">
+				<div class="lux-container">
+					<div class="lux-section-header reveal">
+						<span class="lux-eyebrow">Personalisasi Detail</span>
+						<div class="lux-divider"><span>✦</span></div>
+						<h2 class="lux-heading">Hadirkan Pemberian<br>yang Lebih <em>Bermakna</em></h2>
+						<p class="lux-para">
+							Sampaikan rasa syukur sepulang dari tanah suci melalui hampers yang dapat dipersonalisasi mulai dari pilihan isi, kartu ucapan, hingga detail kemasan yang elegan.
+						</p>
+					</div>
+
+					<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;" class="reveal">
+
+						<div class="kustom-card">
+							<div class="kustom-icon">
+								<svg width="22" height="22" viewBox="0 0 243 187" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M219 0H24.5L122 88L219 0ZM0 187H243L134.398 99.6271L122 111L109.5 99.6271L0 187ZM147 88L243 164V0L147 88ZM0 0L97.5 88L0 166V0Z" fill="#C9A84C"/></svg>
+							</div>
+							<h3 class="kustom-title">Custom Hampers Selection</h3>
+							<p class="kustom-desc">Sesuaikan ukuran hampers dan kurasi isi berdasarkan preferensi Anda, tanpa sedikitpun mengurangi impresi eksklusif dan kualitas produk yang kami sajikan.</p>
+							<ul class="kustom-list">
+								<li>Pilihan Paket Lengkap</li>
+								<li>Tambahan sarung, mukena, tasbih, atau buku dzikir</li>
+								<li>Produk berkualitas premium</li>
+							</ul>
+						</div>
+
+						<div class="kustom-card">
+							<div class="kustom-icon">
+								<svg width="22" height="22" viewBox="0 0 243 187" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M219 0H24.5L122 88L219 0ZM0 187H243L134.398 99.6271L122 111L109.5 99.6271L0 187ZM147 88L243 164V0L147 88ZM0 0L97.5 88L0 166V0Z" fill="#C9A84C"/></svg>
+							</div>
+							<h3 class="kustom-title">Personal Message Card</h3>
+							<p class="kustom-desc">Sampaikan doa dan pesan hangat melalui kartu ucapan dengan desain elegan dan sentuhan yang lebih bermakna untuk orang-orang terkasih.</p>
+							<ul class="kustom-list">
+								<li>Pilihan bahasa Indonesia / Arab / Inggris</li>
+								<li>Bisa request nama penerima &amp; pengirim</li>
+							</ul>
+						</div>
+
+						<div class="kustom-card">
+							<div class="kustom-icon">
+								<svg width="22" height="22" viewBox="0 0 243 187" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M219 0H24.5L122 88L219 0ZM0 187H243L134.398 99.6271L122 111L109.5 99.6271L0 187ZM147 88L243 164V0L147 88ZM0 0L97.5 88L0 166V0Z" fill="#C9A84C"/></svg>
+							</div>
+							<h3 class="kustom-title">Souveneria Signature Touch</h3>
+							<p class="kustom-desc">Untuk kebutuhan keluarga besar, komunitas, maupun perusahaan, tersedia detail tambahan yang tetap elegan, sopan, dan berkelas.</p>
+							<ul class="kustom-list">
+								<li>Cetak logo pada kartu atau segel box</li>
+								<li>Pita satin dengan emboss emas</li>
+							</ul>
+						</div>
+
+					</div>
+
+					<div style="text-align:center;margin-top:48px;" class="reveal">
+						<a href="#kontak" class="btn-outline">Diskusikan Personalisasi Anda →</a>
+					</div>
+				</div>
+			</section>
+
+			<!-- ==================== KOMITMEN ==================== -->
+			<section id="komitmen" class="lux-section lux-section-cream">
+				<div class="lux-container">
+					<div class="lux-section-header reveal">
+						<span class="lux-eyebrow" style="color:var(--gold-dark);">Standar Pelayanan</span>
+						<div class="lux-divider"><span style="color:var(--gold-dark);">✦</span></div>
+						<h2 class="lux-heading dark">Komitmen <em>Kami</em></h2>
+						<p class="lux-para dark">
+							Kami percaya perjalanan suci layak dipresentasikan dengan pelayanan terbaik, detail yang terjaga, dan kualitas yang dapat dipercaya.
+						</p>
+					</div>
+
+					<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-bottom:48px;" class="reveal">
+
+						<div class="komitmen-card">
+							<div class="komitmen-icon">
+								<svg width="24" height="24" viewBox="0 0 184 159" fill="none"><path d="M73.4847 158.494L0.00021758 62.0288L42.7628 68.1564L82.5629 95.1415L183.52 -5.917e-05L73.4847 158.494Z" fill="#9A7828"/></svg>
+							</div>
+							<h4 class="komitmen-title">Kualitas Premium</h4>
+							<p class="komitmen-desc">Hampers eksklusif yang dirancang dengan material terbaik untuk menghadirkan kesan elegan, hangat, serta mampu menyalurkan ketulusan dari Tanah Suci.</p>
+						</div>
+
+						<div class="komitmen-card">
+							<div class="komitmen-icon">
+								<svg width="24" height="24" viewBox="0 0 184 192" fill="none"><path d="M0 39.5L92 0L184 39.5V72.5L92 34L0 72.5V39.5Z" fill="#9A7828"/><path d="M0 90V166.5L85 191.5V56.5L0 90Z" fill="#9A7828"/><path d="M184 166.5V90L98 56.5V191.739L123 184.402V127.5L148 132V177.065L184 166.5Z" fill="#9A7828"/></svg>
+							</div>
+							<h4 class="komitmen-title">Estetika Islami</h4>
+							<p class="komitmen-desc">Memadukan kemewahan visual dengan keluhuran nilai-nilai Islami. Anggun dalam tampilan, khidmat dalam makna.</p>
+						</div>
+
+						<div class="komitmen-card">
+							<div class="komitmen-icon">
+								<svg width="24" height="24" viewBox="0 0 195 151" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M195 0H8.56098L0 107.857H32.3415L16.8841 151L76.5732 107.857H186.439L195 0ZM110.341 70.977H98.9268L97.0244 87.6774H108.439L110.341 70.977ZM120.805 70.977H132.22L130.317 87.6774H118.902L120.805 70.977ZM155.049 70.977H143.634L141.732 87.6774H153.146L155.049 70.977Z" fill="#9A7828"/></svg>
+							</div>
+							<h4 class="komitmen-title">Personal Touch</h4>
+							<p class="komitmen-desc">Setiap hampers dibuat secara khusus untuk merepresentasikan rasa syukur atas perjalanan haji yang istimewa, sehingga terasa lebih bermakna.</p>
+						</div>
+
+						<div class="komitmen-card">
+							<div class="komitmen-icon">
+								<svg width="24" height="24" viewBox="0 0 214 146" fill="none"><path d="M36.1865 116.639C41.5866 106.187 53.284 101.496 62.3125 106.161C71.3407 110.826 74.2816 123.08 68.8818 133.531C63.4818 143.983 51.7854 148.675 42.7568 144.01C33.7283 139.345 30.7865 127.09 36.1865 116.639ZM148.427 116.639C153.827 106.187 165.523 101.496 174.552 106.161C183.58 110.826 186.522 123.08 181.122 133.531C175.722 143.983 164.025 148.675 154.996 144.01C145.968 139.345 143.027 127.09 148.427 116.639ZM56.7461 116.933C52.8569 114.924 47.8185 116.944 45.4922 121.446C43.166 125.949 44.433 131.228 48.3223 133.237C52.2117 135.247 57.2509 133.226 59.5771 128.724C61.9032 124.221 60.6354 118.942 56.7461 116.933ZM168.986 116.933C165.097 114.923 160.058 116.944 157.731 121.446C155.405 125.949 156.673 131.228 160.562 133.237C164.452 135.247 169.49 133.226 171.816 128.724C174.143 124.221 172.876 118.942 168.986 116.933ZM124.124 108.938C124.124 108.938 132.047 109.599 134.027 101.676C136.008 93.752 147.893 25.749 147.893 25.749H189.487L213.256 71.9658L204.673 121.483H190.147C190.147 121.483 190.147 99.0352 168.359 99.0352C146.572 99.0354 138.649 121.483 138.649 121.483H77.9072C77.9072 121.483 77.9076 99.0353 56.1201 99.0352C34.3324 99.0352 27.0693 121.483 27.0693 121.483H0L19.1465 0H141.95L124.124 108.938ZM152.514 69.9844H199.391L182.885 36.9727H157.796L152.514 69.9844Z" fill="#9A7828"/></svg>
+							</div>
+							<h4 class="komitmen-title">Layanan Responsif</h4>
+							<p class="komitmen-desc">Mengutamakan pelayanan yang responsif, penuh perhatian, dan tulus untuk mendampingi Anda di setiap proses personalisasi.</p>
+						</div>
+
+						<div class="komitmen-card">
+							<div class="komitmen-icon">
+								<svg width="24" height="24" viewBox="0 0 152 155" fill="none"><path d="M16.6676 4.96547C48.0262 -14.1476 75.2042 28.079 75.2042 28.079C75.2042 28.079 102.744 -14.1476 134.519 4.96549C166.295 24.0786 146.749 71.5785 128.62 97.5503C110.491 123.522 75.2042 154.578 75.2042 154.578C75.2042 154.578 40.3802 123.522 22.4892 97.5503C4.59822 71.5785 -14.691 24.0786 16.6676 4.96547Z" fill="#9A7828"/></svg>
+							</div>
+							<h4 class="komitmen-title">Pengiriman Amanah</h4>
+							<p class="komitmen-desc">Dikirim dengan aman, tepat waktu, dan penuh tanggung jawab hingga sampai ke tangan penerima dengan sempurna.</p>
+						</div>
+
+						<div class="komitmen-card">
+							<div class="komitmen-icon">
+								<svg width="24" height="24" viewBox="0 0 170 154" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M168.732 33.148L138.009 0L111.403 33.148L84.5117 0L56.9311 33.148L31.0145 0L0.29183 33.148H56.9311H111.403H168.732ZM135.536 0L111.403 29.6951L87.2698 0H135.536ZM33.4875 0H81.7537L56.9311 29.6951L33.4875 0ZM0.000158072 35.9103L84.5117 154L169.023 35.9103H112.012L84.5117 154L110.403 35.9103H57.9311L84.5117 154L56.0117 35.9103H0.000158072Z" fill="#9A7828"/></svg>
+							</div>
+							<h4 class="komitmen-title">Penawaran Terbaik</h4>
+							<p class="komitmen-desc">Menyajikan kualitas tanpa kompromi dengan nilai kemuliaan yang sepadan untuk setiap momen spiritual Anda yang berharga.</p>
+						</div>
+
+					</div>
+
+					<div style="text-align:center;" class="reveal">
+						<a href="#kontak" class="btn-gold">✦ &nbsp;Hubungi Kami Sekarang</a>
+					</div>
+				</div>
+			</section>
+
+			<!-- ==================== FOOTER CTA ==================== -->
+			<div class="lux-cta-section">
+				<div style="position:relative;z-index:1;">
+					<span class="lux-eyebrow">Souveneria</span>
+					<div class="lux-divider" style="justify-content:center;"><span>✦</span></div>
+					<p style="font-family:'Cormorant Garamond',serif;font-size:clamp(24px,4vw,48px);font-weight:300;color:var(--cream);margin:0 0 8px;line-height:1.2;">
+						Sacred Gifting, <em style="font-style:italic;color:var(--gold);">Elevated.</em>
+					</p>
+					<p style="font-size:12px;letter-spacing:0.15em;color:rgba(250,246,238,0.4);margin:0;font-family:'Montserrat',sans-serif;">
+						MADINAH EMERALD COLLECTION · 1447 H
+					</p>
+				</div>
+			</div>
+
+		</main>
+
+		<script src="script.js"></script>
+		<script>
+			/* ===================================================
+			   SOUVENERIA LUXURY SCRIPTS
+			   =================================================== */
+
+			// ---- Custom Cursor ----
+			const cursor = document.getElementById('luxury-cursor');
+			const trail = document.getElementById('luxury-cursor-trail');
+			let trailX = 0, trailY = 0, curX = 0, curY = 0;
+
+			document.addEventListener('mousemove', e => {
+				curX = e.clientX; curY = e.clientY;
+				cursor.style.transform = `translate(${curX}px, ${curY}px) translate(-50%,-50%)`;
+			});
+
+			// Smooth trail
+			(function animateTrail() {
+				trailX += (curX - trailX) * 0.12;
+				trailY += (curY - trailY) * 0.12;
+				trail.style.transform = `translate(${trailX}px, ${trailY}px) translate(-50%,-50%)`;
+				requestAnimationFrame(animateTrail);
+			})();
+
+			// Cursor hover effect
+			document.querySelectorAll('a, button, .photo-thumb, .komitmen-card, .kustom-card, .product-card').forEach(el => {
+				el.addEventListener('mouseenter', () => cursor.classList.add('hovering'));
+				el.addEventListener('mouseleave', () => cursor.classList.remove('hovering'));
+			});
+
+			// ---- Sticky Nav ----
+			const nav = document.getElementById('lux-nav');
+			window.addEventListener('scroll', () => {
+				nav.classList.toggle('scrolled', window.scrollY > 60);
+			});
+
+			// ---- Scroll Reveal ----
+			const reveals = document.querySelectorAll('.reveal');
+			const revealObserver = new IntersectionObserver(entries => {
+				entries.forEach((entry, i) => {
+					if (entry.isIntersecting) {
+						setTimeout(() => entry.target.classList.add('visible'), i * 80);
+						revealObserver.unobserve(entry.target);
+					}
+				});
+			}, { threshold: 0.1 });
+			reveals.forEach(el => revealObserver.observe(el));
+
+			// ---- Tab Foto (product gallery) ----
+			document.querySelectorAll('.itemTabFoto').forEach(item => {
+				const contents = item.querySelectorAll('.photo-main');
+				const thumbs = item.querySelectorAll('.photo-thumb.tablinks');
+				thumbs.forEach((thumb, i) => {
+					thumb.addEventListener('click', () => {
+						thumbs.forEach(t => t.classList.remove('active'));
+						thumb.classList.add('active');
+					});
+				});
+			});
+
+			// ---- Testimoni Slider ----
+			(function() {
+				var track = document.getElementById('testimoniTrack');
+				var dotsContainer = document.getElementById('testimoniDots');
+				if (!track) return;
+				var slides = track.querySelectorAll('.testimoni-slide');
+				var total = slides.length;
+				var gap = 24;
+				var current = 0;
+				var autoplayDelay = 4000;
+				var timer;
+				var isDragging = false;
+				var dragStartX = 0;
+				var dragDeltaX = 0;
+
+				function getPerView() {
+					var w = window.innerWidth;
+					if (w < 640) return 1;
+					if (w < 960) return 2;
+					return 3;
+				}
+				function getSlideWidth() {
+					var outer = track.parentElement;
+					var pv = getPerView();
+					return (outer.offsetWidth - gap * (pv - 1)) / pv;
+				}
+				function updateSlideWidths() {
+					var w = getSlideWidth();
+					slides.forEach(s => { s.style.flex = '0 0 ' + w + 'px'; s.style.marginRight = gap + 'px'; });
+				}
+				function maxIndex() { return Math.max(0, total - getPerView()); }
+				function goTo(idx, animate) {
+					track.style.transition = animate === false ? 'none' : 'transform 0.7s cubic-bezier(.77,0,.18,1)';
+					current = Math.max(0, Math.min(idx, maxIndex()));
+					var w = getSlideWidth();
+					track.style.transform = 'translateX(-' + (current * (w + gap)) + 'px)';
+					updateDots();
+				}
+				function buildDots() {
+					dotsContainer.innerHTML = '';
+					var count = maxIndex() + 1;
+					for (var i = 0; i < count; i++) {
+						(function(i) {
+							var dot = document.createElement('button');
+							dot.style.cssText = 'width:8px;height:8px;border-radius:50%;border:1px solid rgba(201,168,76,0.5);cursor:pointer;padding:0;background:transparent;transition:background 0.3s,transform 0.3s;outline:none;';
+							dot.addEventListener('click', function() { goTo(i); resetTimer(); });
+							dotsContainer.appendChild(dot);
+						})(i);
+					}
+					updateDots();
+				}
+				function updateDots() {
+					dotsContainer.querySelectorAll('button').forEach((d, i) => {
+						d.style.background = i === current ? 'var(--gold)' : 'transparent';
+						d.style.transform = i === current ? 'scale(1.4)' : 'scale(1)';
+					});
+				}
+				function next() { goTo(current >= maxIndex() ? 0 : current + 1); }
+				function startTimer() { timer = setInterval(next, autoplayDelay); }
+				function resetTimer() { clearInterval(timer); startTimer(); }
+
+				// Drag
+				track.addEventListener('mousedown', e => { isDragging = true; dragStartX = e.clientX; dragDeltaX = 0; track.style.transition = 'none'; clearInterval(timer); });
+				document.addEventListener('mousemove', e => { if (!isDragging) return; dragDeltaX = e.clientX - dragStartX; var w = getSlideWidth(); track.style.transform = 'translateX(' + (-current * (w + gap) + dragDeltaX) + 'px)'; });
+				document.addEventListener('mouseup', () => { if (!isDragging) return; isDragging = false; if (dragDeltaX < -60) goTo(current + 1); else if (dragDeltaX > 60) goTo(current - 1); else goTo(current); startTimer(); });
+				track.addEventListener('touchstart', e => { dragStartX = e.touches[0].clientX; dragDeltaX = 0; track.style.transition = 'none'; clearInterval(timer); }, { passive: true });
+				track.addEventListener('touchmove', e => { dragDeltaX = e.touches[0].clientX - dragStartX; var w = getSlideWidth(); track.style.transform = 'translateX(' + (-current * (w + gap) + dragDeltaX) + 'px)'; }, { passive: true });
+				track.addEventListener('touchend', () => { if (dragDeltaX < -60) goTo(current + 1); else if (dragDeltaX > 60) goTo(current - 1); else goTo(current); startTimer(); });
+				track.parentElement.addEventListener('mouseenter', () => clearInterval(timer));
+				track.parentElement.addEventListener('mouseleave', () => startTimer());
+
+				updateSlideWidths(); buildDots(); goTo(0, false); startTimer();
+				window.addEventListener('resize', () => { updateSlideWidths(); buildDots(); goTo(Math.min(current, maxIndex()), false); });
+			})();
+
+			// ---- Parallax Hero Ornament ----
+			const ornament = document.querySelector('.hero-ornament');
+			window.addEventListener('scroll', () => {
+				if (ornament) {
+					ornament.style.transform = `translateY(calc(-50% + ${window.scrollY * 0.15}px))`;
+				}
+			}, { passive: true });
+
+			// ---- Staggered card reveal on hover for grid items ----
+			document.querySelectorAll('.komitmen-card, .kustom-card').forEach((card, i) => {
+				card.style.transitionDelay = (i % 3) * 0.06 + 's';
+			});
+
+		</script>
+	</body>
+</html>
